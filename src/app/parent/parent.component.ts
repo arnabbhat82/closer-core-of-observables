@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { interval, Subscription, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-parent',
@@ -34,6 +34,9 @@ export class ParentComponent implements OnInit, OnDestroy {
 
     this.firstObsSubscription = customIntervalObservable
       .pipe(
+        filter(data => {
+          return data > 0;
+        }),
         map((data: number) => {
           return 'Round ' + (data + 1);
         }),
