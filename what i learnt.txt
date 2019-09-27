@@ -1,0 +1,6 @@
+If we create an observable we need to destroy that subscription or else there will be memory leakage and your app will 
+run slow. 
+How the memory leakage happens?
+The subscription is emitting values on initialization of the component, but if the user move to another component still 
+the value is being emitted in the background and when the user comes back to the component again another phase of value 
+emission starts. Soon the app will run out of resource and it will run slow.
