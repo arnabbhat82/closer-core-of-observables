@@ -30,7 +30,7 @@ export class ParentComponent implements OnInit, OnDestroy {
         count++;
       }, 1000);
     });
-    customIntervalObservable.subscribe(data => {
+    this.firstObsSubscription = customIntervalObservable.subscribe(data => {
       console.log(data);
     });
   }
