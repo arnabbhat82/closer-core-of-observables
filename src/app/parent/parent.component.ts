@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { interval, Subscription, Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
+import { UserServiceService } from '../user-service.service';
 
 @Component({
   selector: 'app-parent',
@@ -11,7 +12,7 @@ import { map, filter } from 'rxjs/operators';
 export class ParentComponent implements OnInit, OnDestroy {
   private firstObsSubscription: Subscription;
 
-  constructor() {}
+  constructor(private userService: UserServiceService) {}
 
   ngOnInit() {
     // this.firstObsSubscription = interval(1000).subscribe(count => {
@@ -45,7 +46,9 @@ export class ParentComponent implements OnInit, OnDestroy {
         console.log(data);
       });
   }
-
+  onActivate() {
+    this.userService.activatedEmitter.emit(true);
+  }
   ngOnDestroy(): void {
     this.firstObsSubscription.unsubscribe();
   }
