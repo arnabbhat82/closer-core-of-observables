@@ -47,7 +47,8 @@ export class ParentComponent implements OnInit, OnDestroy {
       });
   }
   onActivate() {
-    this.userService.activatedEmitter.emit(true);
+    // this.userService.activatedEmitter.emit(true);
+    this.userService.activatedEmitter.next(true);
   }
   ngOnDestroy(): void {
     this.firstObsSubscription.unsubscribe();
